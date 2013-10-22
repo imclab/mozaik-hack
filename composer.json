@@ -1,0 +1,13 @@
+{
+    "name": "talis/mozaik-hack",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/talis/f3"
+        }
+    ],
+    "require": {
+        "talis/f3": "=2.0.12.1",
+        "chrisboulton/php-resque": "1.2.x"
+    }
+}

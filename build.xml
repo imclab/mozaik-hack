@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="init" name="MOZAIK" basedir=".">
+
+    <target name="init" depends="installComposer" description="Set up the local environment to run the application">
+        <!-- Check for updates to Composer -->
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar"/>
+            <arg value="self-update"/>
+        </exec>
+
+        <!-- Install dependencies through Composer -->
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar"/>
+            <arg value="install"/>
+        </exec>
+
+        <!-- Update dependencies through Composer -->
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar"/>
+            <arg value="update"/>
+        </exec>
+    </target>
+
+    <target name="checkComposer">
+        <echo>Checking to see if composer.phar exists...</echo>
+        <available file="composer.phar" property="composer.exists"/>
+    </target>
+
+    <target name="installComposer" depends="checkComposer" unless="composer.exists">
+        <echo>Installing composer...</echo>
+        <exec executable="sh">
+            <arg value="-c"/>
+            <arg value="curl -sS https://getcomposer.org/installer | php"/>
+        </exec>
+    </target>
+
+</project>
